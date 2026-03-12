@@ -1,18 +1,23 @@
-# Dify Installer
+# Dify Installer - One-Click Docker Deployment
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![GitHub stars](https://img.shields.io/github/stars/caoergou/dify-installer?style=social)](https://github.com/caoergou/dify-installer/stargazers)
 
-**One command to deploy Dify with Docker Compose.** No manual cloning, no complex configuration.
+**Deploy Dify (LLM App Platform) with a single command.** Docker Compose based installation with no manual cloning, no complex configuration.
 
-[中文文档](README_CN.md)
+[中文文档](README_CN.md) | [Dify Official](https://github.com/langgenius/dify)
 
 ```bash
 curl -sSL https://raw.githubusercontent.com/caoergou/dify-installer/main/install.sh | bash
 ```
 
+---
+
 ## What is Dify?
 
-[Dify](https://github.com/langgenius/dify) is an open-source LLM application development platform. This installer uses **Docker Compose** to get you running in minutes.
+[Dify](https://github.com/langgenius/dify) is an open-source **LLM application development platform** for building AI apps, chatbots, RAG pipelines, and AI agents. Similar to LangChain but with a visual no-code interface.
+
+This installer uses **Docker Compose** to get you running in minutes on any Linux server.
 
 ## One-Line Install
 
@@ -71,3 +76,9 @@ Access Dify at `http://localhost` (or your configured domain).
 ## License
 
 MIT
+
+---
+
+## Keywords
+
+Dify installer, Dify Docker, Dify deployment, Dify docker-compose, LLM platform, AI app builder, RAG pipeline, AI agent platform, ChatGPT alternative, self-hosted AI, LangChain alternative, vector database, Weaviate, Qdrant, Milvus, pgvector, open source LLM, AI chatbot builder, no-code AI platform

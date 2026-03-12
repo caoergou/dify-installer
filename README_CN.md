@@ -1,18 +1,23 @@
-# Dify 安装器
+# Dify 一键安装器 - Docker 部署
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![GitHub stars](https://img.shields.io/github/stars/caoergou/dify-installer?style=social)](https://github.com/caoergou/dify-installer/stargazers)
 
-**一行命令使用 Docker Compose 部署 Dify。** 无需手动克隆，无需复杂配置。
+**一行命令部署 Dify（LLM 应用开发平台）。** 基于 Docker Compose，无需手动克隆，无需复杂配置。国内用户自动使用镜像加速。
 
-[English](README.md)
+[English](README.md) | [Dify 官方仓库](https://github.com/langgenius/dify)
 
 ```bash
 curl -sSL https://raw.githubusercontent.com/caoergou/dify-installer/main/install_cn.sh | bash
 ```
 
+---
+
 ## 什么是 Dify？
 
-[Dify](https://github.com/langgenius/dify) 是开源的 LLM 应用开发平台。本安装器使用 **Docker Compose** 让你几分钟内完成部署。
+[Dify](https://github.com/langgenius/dify) 是开源的 **LLM 应用开发平台**，用于构建 AI 应用、聊天机器人、RAG 知识库和 AI 智能体。类似 LangChain，但提供可视化无代码界面。
+
+本安装器使用 **Docker Compose** 让你在几分钟内完成服务器部署。
 
 ## 一键安装
 
@@ -81,3 +86,9 @@ sudo systemctl restart docker
 ## 许可证
 
 MIT
+
+---
+
+## 关键词
+
+Dify 安装, Dify Docker, Dify 部署, Dify docker-compose, LLM 平台, AI 应用开发, RAG 知识库, AI 智能体, ChatGPT 替代方案, 私有部署 AI, LangChain 替代, 向量数据库, Weaviate, Qdrant, Milvus, pgvector, 开源 LLM, AI 聊天机器人, 无代码 AI 平台, 国内镜像, Gitee 镜像
