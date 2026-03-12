@@ -86,9 +86,3 @@ sudo systemctl restart docker
 ## 许可证
 
 MIT
-
----
-
-## 关键词
-
-Dify 安装, Dify Docker, Dify 部署, Dify docker-compose, LLM 平台, AI 应用开发, RAG 知识库, AI 智能体, ChatGPT 替代方案, 私有部署 AI, LangChain 替代, 向量数据库, Weaviate, Qdrant, Milvus, pgvector, 开源 LLM, AI 聊天机器人, 无代码 AI 平台, 国内镜像, Gitee 镜像

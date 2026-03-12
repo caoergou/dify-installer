@@ -76,9 +76,3 @@ Access Dify at `http://localhost` (or your configured domain).
 ## License
 
 MIT
-
----
-
-## Keywords
-
-Dify installer, Dify Docker, Dify deployment, Dify docker-compose, LLM platform, AI app builder, RAG pipeline, AI agent platform, ChatGPT alternative, self-hosted AI, LangChain alternative, vector database, Weaviate, Qdrant, Milvus, pgvector, open source LLM, AI chatbot builder, no-code AI platform
