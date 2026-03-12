@@ -2,7 +2,9 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-**一行命令部署 Dify。** 无需复杂配置，无需手动克隆。
+**一行命令使用 Docker Compose 部署 Dify。** 无需手动克隆，无需复杂配置。
+
+[English](README.md)
 
 ```bash
 curl -sSL https://raw.githubusercontent.com/caoergou/dify-installer/main/install_cn.sh | bash
@@ -10,7 +12,7 @@ curl -sSL https://raw.githubusercontent.com/caoergou/dify-installer/main/install
 
 ## 什么是 Dify？
 
-[Dify](https://github.com/langgenius/dify) 是开源的 LLM 应用开发平台。本安装器让你几分钟内完成部署。
+[Dify](https://github.com/langgenius/dify) 是开源的 LLM 应用开发平台。本安装器使用 **Docker Compose** 让你几分钟内完成部署。
 
 ## 一键安装
 
@@ -21,19 +23,20 @@ curl -sSL https://raw.githubusercontent.com/caoergou/dify-installer/main/install
 
 ## 功能特性
 
+- **Docker Compose 部署** - 所有服务运行在容器中
 - 交互式配置，智能默认值
-- PostgreSQL 或 MySQL
+- 数据库：PostgreSQL 或 MySQL
 - 向量数据库：Weaviate、Qdrant、Milvus、Chroma、pgvector
 - 存储：本地、S3、Azure、GCS、阿里云 OSS
 - SSL 证书：Let's Encrypt 或自定义
 
 ## 系统要求
 
-- Docker + Docker Compose
+- 已安装 Docker + Docker Compose
 - 2+ CPU 核心，4GB+ 内存
 - 端口 80、443 可用
 
-## 常用命令
+## 使用方法
 
 ```bash
 ./install_cn.sh           # 交互式配置
@@ -41,20 +44,30 @@ curl -sSL https://raw.githubusercontent.com/caoergou/dify-installer/main/install
 ./install_cn.sh --help    # 显示帮助
 ```
 
-安装后：
+## 安装后
+
+服务通过 Docker Compose 管理：
+
 ```bash
 docker compose logs -f   # 查看日志
-docker compose down      # 停止服务
-docker compose up -d     # 启动服务
+docker compose down      # 停止所有服务
+docker compose up -d     # 启动所有服务
+docker compose ps        # 查看状态
 ```
+
+访问地址：`http://localhost`（或你配置的域名）。
+
+## 文档
+
+- [高级配置](docs/advanced_cn.md) - 环境变量、性能优化、SSL 配置、故障排查
+- [Advanced Configuration](docs/advanced.md) - English docs
 
 ## 国内加速
 
-脚本自动使用 **Gitee 镜像** 加速下载。
+脚本自动使用 **Gitee 镜像** 加速 Git 克隆。
 
-Docker 镜像加速（推荐配置）：
+Docker 镜像加速（推荐）：
 ```bash
-# 编辑 /etc/docker/daemon.json
 echo '{"registry-mirrors": ["https://docker.1ms.run"]}' | sudo tee /etc/docker/daemon.json
 sudo systemctl restart docker
 ```
@@ -62,8 +75,8 @@ sudo systemctl restart docker
 ## 相关链接
 
 - [Dify 官方](https://github.com/langgenius/dify) - 官方仓库
-- [文档](https://docs.dify.ai) - 官方文档
-- [云服务](https://cloud.dify.ai) - 托管服务
+- [Dify 文档](https://docs.dify.ai) - 官方文档
+- [Dify Cloud](https://cloud.dify.ai) - 托管服务
 
 ## 许可证
 
