@@ -1,0 +1,86 @@
+name: Sync Upstream install.sh
+
+on:
+  schedule:
+    # Run daily at 00:00 UTC
+    - cron: '0 0 * * *'
+  workflow_dispatch: # Allow manual trigger
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Fetch upstream install.sh
+        id: fetch
+        run: |
+          # Fetch the latest install.sh from Dify official repo
+          curl -sSL "https://raw.githubusercontent.com/langgenius/dify/main/docker/install.sh" -o upstream_install.sh
+
+          # Check if files are different
+          if diff -q install.sh upstream_install.sh > /dev/null 2>&1; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+            echo "No changes detected"
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+            echo "Changes detected in upstream install.sh"
+          fi
+
+      - name: Create Pull Request
+        if: steps.fetch.outputs.changed == 'true'
+        run: |
+          # Configure git
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Create a new branch
+          BRANCH_NAME="sync/upstream-$(date +%Y%m%d-%H%M%S)"
+          git checkout -b "$BRANCH_NAME"
+
+          # Copy the updated file
+          cp upstream_install.sh install.sh
+
+          # Update the curl URL to point to this repo
+          sed -i 's|https://raw.githubusercontent.com/langgenius/dify/main/docker/install.sh|https://raw.githubusercontent.com/caoergou/dify-installer/main/install.sh|g' install.sh
+          sed -i 's|GITHUB_REPO="langgenius/dify"|GITHUB_REPO="langgenius/dify"\nINSTALLER_REPO="caoergou/dify-installer"|g' install.sh
+
+          # Commit and push
+          git add install.sh
+          git commit -m "chore: sync install.sh from upstream Dify
+
+          This is an automated sync from https://github.com/langgenius/dify"
+
+          git push origin "$BRANCH_NAME"
+
+          # Create PR
+          gh pr create \
+            --title "chore: sync install.sh from upstream Dify" \
+            --body "## Summary
+
+          This PR syncs the install.sh script from the upstream [Dify repository](https://github.com/langgenius/dify).
+
+          ### Changes
+          - Updated install.sh to match upstream version
+
+          ### How to review
+          - Check the diff for any breaking changes
+          - Ensure the installer repo URL is correctly set
+          - Test the script locally if needed
+
+          ---
+          This is an automated PR created by the sync-upstream workflow." \
+            --base main
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Cleanup
+        run: |
+          rm -f upstream_install.sh
